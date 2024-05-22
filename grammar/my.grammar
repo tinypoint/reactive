@@ -1,0 +1,20 @@
+@external propSource highlighting from "./highlight.js"
+
+@top File { (Number | String)+ }
+
+@skip {} {
+  String { '"' (stringContent | stringEscape)* stringEnd }
+}
+
+@local tokens {
+  stringEnd[@name='"'] { '"' }
+  StringEscape { "\\" _ }
+  @else stringContent
+}
+
+@skip { space }
+
+@tokens {
+  Number { @digit+ }
+  space { @whitespace }
+}

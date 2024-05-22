@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactCodeMirror from '@uiw/react-codemirror';
+import { useEffect, useMemo, useState } from 'react';
+import { LRLanguage, syntaxHighlighting, HighlightStyle } from '@codemirror/language';
+import { parser } from './grammar';
+import { tags } from '@lezer/highlight';
 
 function App() {
+  const [value, setValue] = useState('{{abc}}');
+  const extensions = useMemo(() => {
+    const highlight = HighlightStyle.define([
+      { tag: tags.number, color: '#fc6' },
+      { tag: tags.string, color: '#f5d' },
+      { tag: tags.content, color: 'red' },
+    ]);
+    return [
+      LRLanguage.define({
+        parser: parser,
+      }),
+      syntaxHighlighting(highlight),
+    ];
+  }, []);
+
+  useEffect(() => {
+    console.log(parser.parse(value).toString());
+  }, [value]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ReactCodeMirror
+      extensions={extensions}
+      value={value}
+      onChange={setValue}
+    />
   );
 }
 
