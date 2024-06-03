@@ -15,9 +15,14 @@
     "@testing-library/user-event": "^13.5.0",
     "@typescript/vfs": "^1.5.0",
     "@uiw/react-codemirror": "^4.22.1",
+    "@vue/compiler-core": "^3.4.27",
+    "@vue/compiler-sfc": "^3.4.27",
+    "@vue/reactivity": "^3.4.27",
+    "@vue/shared": "^3.4.27",
     "acorn": "^8.11.3",
     "acorn-walk": "^8.3.2",
     "lodash-es": "^4.17.21",
+    "mobx": "^6.12.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
@@ -32,8 +37,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prepare": "rollup -c --watch"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
